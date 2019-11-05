@@ -25,12 +25,12 @@ export class AppComponent {
 
   constructor(service: Service) {
     this.veranstaltungen = service.getVeranstaltungen();
-    this.currentItem = this.veranstaltungen[0];
+    // this.currentItem = this.veranstaltungen[0];
 
   }
-  selectItem(e) {
-    this.currentItem = e.itemData;
-  }
+  // selectItem(e) {
+  //   this.currentItem = e.itemData;
+  // }
 
 }
 
