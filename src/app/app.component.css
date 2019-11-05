@@ -1,0 +1,13 @@
+.title{
+  text-align: center;
+  color: cadetblue;
+}
+.treeView {
+margin-left: auto;
+margin-right: auto;
+}
+
+/* ::ng-deep #treeview {
+  height: 400px;
+} */
+
