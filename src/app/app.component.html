@@ -2,7 +2,7 @@
 <dx-tree-view
   class="treeView"
   #treeview
-  [searchEditorOptions]="{placeholder: 'Veranstaltung suchen...'}"
+  [searchEditorOptions]="{ placeholder: 'Veranstaltung suchen...' }"
   [searchValue]=""
   [items]="veranstaltungen"
   [width]="500"
@@ -13,10 +13,35 @@
 >
 </dx-tree-view>
 
-<p>How to merge in Git ?</p>
+<br /><br /><br />
 
-<p>kleine änderung</p>
-
-
-
-
+<dx-data-grid
+  class="datagrid"
+  [dataSource]="products"
+  [showBorders]="true"
+  [columnAutoWidth]="true"
+  (onCellPrepared)="onCellPrepared($event)"
+>
+<dxo-paging [pageSize]="5"></dxo-paging>
+<dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="[2, 5, 10]"
+    [showInfo]="true">
+</dxo-pager>
+  <dxi-column dataField="ProductID" caption="Product ID"> </dxi-column>
+  <dxi-column dataField="ProductName" caption="Product Name"> </dxi-column>
+  <dxi-column dataField="UnitPrice" caption="Unit Price" >
+  </dxi-column>
+  <dxi-column
+    dataField="Code"
+    caption="Code"
+    cellTemplate="codeTemplate"
+  >
+    <div *dxTemplate="let product of 'codeTemplate'">
+      <span [style.color]="colorCode(product.data.Code)">
+        {{ product.data.Code }}
+      </span>
+    </div>
+  </dxi-column>
+  <dxi-column dataField="QuantityPerUnit" caption="Quantity / Unit" ></dxi-column>
+</dx-data-grid>

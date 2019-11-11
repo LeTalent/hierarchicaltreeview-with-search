@@ -1,51 +1,79 @@
-import { NgModule, Component, enableProdMode } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-import { TreeviewModule } from "ngx-treeview";
 import {
-  DxTreeViewModule,
-  DxSelectBoxModule,
-  DxTemplateModule,
-  DxListModule
-} from "devextreme-angular";
-import { Veranstaltung, Service } from "./app.service";
-if (!/localhost/.test(document.location.host)) {
-  enableProdMode();
-}
+  NgModule,
+  Component,
+  enableProdMode,
+  ViewEncapsulation
+} from '@angular/core';
+import { Veranstaltung, Product, Service } from './app.service';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "/app.component.html",
-  styleUrls: ["/app.component.css"]
+  selector: 'app-root',
+  templateUrl: '/app.component.html',
+  styleUrls: ['/app.component.css']
 })
 export class AppComponent {
   veranstaltungen: Veranstaltung[];
-  currentItem: Veranstaltung;
-  listData = [
-    { id: 1, country: "Afghanistan", capital: "Kabul" },
-    { id: 2, country: "Albania", capital: "Tirana" },
-];
-
+  products: Product[];
 
   constructor(service: Service) {
     this.veranstaltungen = service.getVeranstaltungen();
+    this.products = service.getProducts();
   }
 
+  public colorCode(Code: string) {
+    let result;
+
+    switch (Code) {
+      case 'C1':
+        result = '#FFBA80';
+        break;
+      case 'C2':
+        result = '#B2F699';
+        break;
+      case 'C3':
+        result = '#FFBA80';
+        break;
+      case 'C4':
+        result = 'blue';
+        break;
+      case 'C5':
+        result = 'red';
+        break;
+      case 'C6':
+        result = 'yellow';
+        break;
+      case 'C7':
+        result = 'green';
+        break;
+      case 'C8':
+        result = 'orange';
+        break;
+      case 'C9':
+        result = 'brown';
+        break;
+      case 'C10':
+        result = 'darkgrey';
+        break;
+      default:
+        result = 'transparent';
+        break;
+    }
+    return result;
+  }
+  public onCellPrepared(e) {
+    if (
+      (e.rowType === 'data' && e.column.dataField === 'ProductID') ||
+      e.column.dataField === 'ProductName' ||
+      e.column.dataField === 'UnitPrice' ||
+      e.column.dataField === 'Code' ||
+      e.column.dataField === 'QuantityPerUnit'
+    ) {
+      if (e.data.ProductID % 2 === 0) {
+        e.cellElement.style.background = '#f2f2f2';
+      } else {
+        e.cellElement.style.background = '#cccccc';
+      }
+    }
+  }
 }
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    DxTreeViewModule,
-    DxSelectBoxModule,
-    DxListModule,
-    DxTemplateModule,
-    TreeviewModule.forRoot()
-  ],
-  providers: [Service],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
-})
-export class AppModule {}
-
-platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,16 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, enableProdMode } from "@angular/core";
+import { TreeviewModule } from "ngx-treeview";
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+if (!/localhost/.test(document.location.host)) {
+  enableProdMode();
+}
+import {
+  DxTreeViewModule,
+  DxSelectBoxModule,
+  DxTemplateModule,
+  DxListModule,
+  DxDataGridModule,
+} from "devextreme-angular";
+import { AppComponent } from "./app.component";
+import { Veranstaltung, Service } from "./app.service";
 
-import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    TreeviewModule,
+    DxTreeViewModule,
+    DxSelectBoxModule,
+    DxTemplateModule,
+    DxListModule,
+    DxDataGridModule
   ],
-  providers: [],
+  providers: [Service, Veranstaltung],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

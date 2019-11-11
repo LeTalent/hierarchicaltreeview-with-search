@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "data-grid": "^3.0.0",
     "devextreme": "^19.2.3",
     "devextreme-angular": "^19.2.3",
     "ngx-tree-select": "^0.14.0",
