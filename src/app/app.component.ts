@@ -21,16 +21,15 @@ if (!/localhost/.test(document.location.host)) {
 export class AppComponent {
   veranstaltungen: Veranstaltung[];
   currentItem: Veranstaltung;
+  listData = [
+    { id: 1, country: "Afghanistan", capital: "Kabul" },
+    { id: 2, country: "Albania", capital: "Tirana" },
+];
 
 
   constructor(service: Service) {
     this.veranstaltungen = service.getVeranstaltungen();
-    // this.currentItem = this.veranstaltungen[0];
-
   }
-  // selectItem(e) {
-  //   this.currentItem = e.itemData;
-  // }
 
 }
 
