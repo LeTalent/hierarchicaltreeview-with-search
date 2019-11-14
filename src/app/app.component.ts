@@ -1,11 +1,8 @@
 import {
   NgModule,
   Component,
-  enableProdMode,
-  ViewEncapsulation
 } from '@angular/core';
 import { Veranstaltung, Product, Service } from './app.service';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -61,7 +58,7 @@ export class AppComponent {
     }
     return result;
   }
-  public onCellPrepared(e) {
+  public onCellPrepared(e: any) {
     if (
       (e.rowType === 'data' && e.column.dataField === 'ProductID') ||
       e.column.dataField === 'ProductName' ||
@@ -71,8 +68,52 @@ export class AppComponent {
     ) {
       if (e.data.ProductID % 2 === 0) {
         e.cellElement.style.background = '#f2f2f2';
-      } else {
+      }
+      if (e.data.ProductID % 2 === 1) {
         e.cellElement.style.background = '#cccccc';
+      }
+      if (e.data.UnitPrice === 19) {
+        e.cellElement.style.background = 'black';
+      }
+    }
+  }
+  public onCellPrepared1(e: any) {
+    if (
+      (e.rowType === 'data' && e.column.dataField === 'ProductID') ||
+      e.column.dataField === 'ProductName' ||
+      e.column.dataField === 'UnitPrice' ||
+      e.column.dataField === 'Code' ||
+      e.column.dataField === 'QuantityPerUnit'
+    ) {
+      if (e.data.Code === 'C1') {
+        e.cellElement.style.background = 'lightblue';
+      }
+      if (e.data.Code === 'C2') {
+        e.cellElement.style.background = 'lightgreen';
+      }
+      if (e.data.Code === 'C3') {
+        e.cellElement.style.background = 'orange';
+      }
+      if (e.data.Code === 'C4') {
+        e.cellElement.style.background = 'lightyellow';
+      }
+      if (e.data.Code === 'C5') {
+        e.cellElement.style.background = 'lightgrey';
+      }
+      if (e.data.Code === 'C6') {
+        e.cellElement.style.background = 'peru';
+      }
+      if (e.data.Code === 'C7') {
+        e.cellElement.style.background = 'salmon';
+      }
+      if (e.data.Code === 'C8') {
+        e.cellElement.style.background = 'lightpink';
+      }
+      if (e.data.Code === 'C9') {
+        e.cellElement.style.background = 'yellowgreen';
+      }
+      if (e.data.Code === 'C10') {
+        e.cellElement.style.background = 'Wheat';
       }
     }
   }
