@@ -1,0 +1,18 @@
+<dx-data-grid
+  id="gridContainer"
+  keyExpr="ID"
+  [dataSource]="dataSource"
+  [showBorders]="true"
+>
+  <dxo-paging [pageSize]="5"></dxo-paging>
+  <dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="[2, 5, 10]"
+    [showInfo]="true"
+  >
+  </dxo-pager>
+  <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true">
+    <!-- <dxo-form [colCount]="1"></dxo-form> -->
+  </dxo-editing>
+  <dxi-column *ngFor="let item of gridColumns" [dataField]="item"></dxi-column>
+</dx-data-grid>

@@ -2,7 +2,7 @@ import {
   NgModule,
   Component,
 } from '@angular/core';
-import { Veranstaltung, Product, Service } from './app.service';
+import { Veranstaltung, Product, Employee, State, Service } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,23 @@ import { Veranstaltung, Product, Service } from './app.service';
 export class AppComponent {
   veranstaltungen: Veranstaltung[];
   products: Product[];
+  employees: Employee[];
+  states: State[];
+  newColumns: any[];
+  lookupDataSource: any;
+  changeMode: boolean;
+  dataSrc: any[];
 
   constructor(service: Service) {
     this.veranstaltungen = service.getVeranstaltungen();
     this.products = service.getProducts();
+    this.employees = service.getEmployees();
+    this.states = service.geStates();
+    this.newColumns = ['Region', 'Sector', 'Channel'];
+    // this.dataSrc = this.employees.concat(this.states);
+    this.lookupDataSource = {
+      store: this.states,
+    };
   }
 
   public colorCode(Code: string) {

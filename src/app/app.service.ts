@@ -13,6 +13,10 @@ export class Category {
   CategoryName: string;
   Description: string;
 }
+export class State {
+  ID: number;
+  Name: string;
+}
 
 export class Product {
   ProductID: number;
@@ -28,6 +32,30 @@ export class Product {
   Code: string;
   Category: Category;
 }
+
+export class Employee {
+  ID: number;
+  FirstName: string;
+  LastName: string;
+  Position: string;
+  Address: string;
+  Region: string;
+  Sector: string;
+  Channel: string;
+}
+
+const states: State[] = [
+  { ID: 1, Name: 'Alabama' },
+  { ID: 2, Name: 'Alaska'},
+  { ID: 3, Name: 'Arizona' },
+  { ID: 4, Name: 'Arkansas' },
+  { ID: 5, Name: 'California' },
+  { ID: 6, Name: 'Colorado' },
+  { ID: 7, Name: 'Connectictu' },
+  { ID: 8, Name: 'Delaware' },
+  { ID: 9, Name: 'District of Columbia' },
+  { ID: 10, Name: 'Florida' }
+];
 
 const veranstaltungen: Veranstaltung[] = [
   {
@@ -147,184 +175,303 @@ const veranstaltungen: Veranstaltung[] = [
   }
 ];
 
-const products: Product[] = [{
-  "ProductID": 1,
-  "ProductName": "Chai",
-  "SupplierID": 1,
-  "CategoryID": 1,
-  "QuantityPerUnit": "10 boxes x 20 bags",
-  "UnitPrice": 18.0000,
-  "UnitsInStock": 39,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 10,
-  "Discontinued": false,
-  "Code": 'C1',
-  "Category": {
-      "CategoryID": 1,
-      "CategoryName": "Beverages",
-      "Description": "Soft drinks, coffees, teas, beers, and ales"
+const products: Product[] = [
+  {
+    ProductID: 1,
+    ProductName: 'Chai',
+    SupplierID: 1,
+    CategoryID: 1,
+    QuantityPerUnit: '10 boxes x 20 bags',
+    UnitPrice: 18.0,
+    UnitsInStock: 39,
+    UnitsOnOrder: 0,
+    ReorderLevel: 10,
+    Discontinued: false,
+    Code: 'C1',
+    Category: {
+      CategoryID: 1,
+      CategoryName: 'Beverages',
+      Description: 'Soft drinks, coffees, teas, beers, and ales'
+    }
+  },
+  {
+    ProductID: 2,
+    ProductName: 'Chang',
+    SupplierID: 1,
+    CategoryID: 1,
+    QuantityPerUnit: '24 - 12 oz bottles',
+    UnitPrice: 19.0,
+    UnitsInStock: 17,
+    UnitsOnOrder: 40,
+    ReorderLevel: 25,
+    Discontinued: false,
+    Code: 'C2',
+    Category: {
+      CategoryID: 1,
+      CategoryName: 'Beverages',
+      Description: 'Soft drinks, coffees, teas, beers, and ales'
+    }
+  },
+  {
+    ProductID: 3,
+    ProductName: 'Aniseed Syrup',
+    SupplierID: 1,
+    CategoryID: 2,
+    QuantityPerUnit: '12 - 550 ml bottles',
+    UnitPrice: 10.0,
+    UnitsInStock: 13,
+    UnitsOnOrder: 70,
+    ReorderLevel: 25,
+    Discontinued: false,
+    Code: 'C3',
+    Category: {
+      CategoryID: 2,
+      CategoryName: 'Condiments',
+      Description: 'Sweet and savory sauces, relishes, spreads, and seasonings'
+    }
+  },
+  {
+    ProductID: 4,
+    ProductName: 'Chef Anton\'s Cajun Seasoning',
+    SupplierID: 2,
+    CategoryID: 2,
+    QuantityPerUnit: '48 - 6 oz jars',
+    UnitPrice: 22.0,
+    UnitsInStock: 53,
+    UnitsOnOrder: 0,
+    ReorderLevel: 0,
+    Discontinued: false,
+    Code: 'C4',
+    Category: {
+      CategoryID: 2,
+      CategoryName: 'Condiments',
+      Description: 'Sweet and savory sauces, relishes, spreads, and seasonings'
+    }
+  },
+  {
+    ProductID: 5,
+    ProductName: 'Chef Anton\'s Gumbo Mix',
+    SupplierID: 2,
+    CategoryID: 2,
+    QuantityPerUnit: '36 boxes',
+    UnitPrice: 21.35,
+    UnitsInStock: 0,
+    UnitsOnOrder: 0,
+    ReorderLevel: 0,
+    Discontinued: true,
+    Code: 'C5',
+    Category: {
+      CategoryID: 2,
+      CategoryName: 'Condiments',
+      Description: 'Sweet and savory sauces, relishes, spreads, and seasonings'
+    }
+  },
+  {
+    ProductID: 6,
+    ProductName: 'Grandma\'s Boysenberry Spread',
+    SupplierID: 3,
+    CategoryID: 2,
+    QuantityPerUnit: '12 - 8 oz jars',
+    UnitPrice: 25.0,
+    UnitsInStock: 120,
+    UnitsOnOrder: 0,
+    ReorderLevel: 25,
+    Discontinued: false,
+    Code: 'C6',
+    Category: {
+      CategoryID: 2,
+      CategoryName: 'Condiments',
+      Description: 'Sweet and savory sauces, relishes, spreads, and seasonings'
+    }
+  },
+  {
+    ProductID: 7,
+    ProductName: 'Uncle Bob\'s Organic Dried Pears',
+    SupplierID: 3,
+    CategoryID: 7,
+    QuantityPerUnit: '12 - 1 lb pkgs.',
+    UnitPrice: 30.0,
+    UnitsInStock: 15,
+    UnitsOnOrder: 0,
+    ReorderLevel: 10,
+    Discontinued: false,
+    Code: 'C7',
+    Category: {
+      CategoryID: 7,
+      CategoryName: 'Produce',
+      Description: 'Dried fruit and bean curd'
+    }
+  },
+  {
+    ProductID: 8,
+    ProductName: 'Northwoods Cranberry Sauce',
+    SupplierID: 3,
+    CategoryID: 2,
+    QuantityPerUnit: '12 - 12 oz jars',
+    UnitPrice: 40.0,
+    UnitsInStock: 6,
+    UnitsOnOrder: 0,
+    ReorderLevel: 0,
+    Discontinued: false,
+    Code: 'C8',
+    Category: {
+      CategoryID: 2,
+      CategoryName: 'Condiments',
+      Description: 'Sweet and savory sauces, relishes, spreads, and seasonings'
+    }
+  },
+  {
+    ProductID: 9,
+    ProductName: 'Mishi Kobe Niku',
+    SupplierID: 4,
+    CategoryID: 6,
+    QuantityPerUnit: '18 - 500 g pkgs.',
+    UnitPrice: 97.0,
+    UnitsInStock: 29,
+    UnitsOnOrder: 0,
+    ReorderLevel: 0,
+    Discontinued: true,
+    Code: 'C9',
+    Category: {
+      CategoryID: 6,
+      CategoryName: 'Meat/Poultry',
+      Description: 'Prepared meats'
+    }
+  },
+  {
+    ProductID: 10,
+    ProductName: 'Ikura',
+    SupplierID: 4,
+    CategoryID: 8,
+    QuantityPerUnit: '12 - 200 ml jars',
+    UnitPrice: 31.0,
+    UnitsInStock: 31,
+    UnitsOnOrder: 0,
+    ReorderLevel: 0,
+    Discontinued: false,
+    Code: 'C10',
+    Category: {
+      CategoryID: 8,
+      CategoryName: 'Seafood',
+      Description: 'Seaweed and fish'
+    }
   }
-}, {
-  "ProductID": 2,
-  "ProductName": "Chang",
-  "SupplierID": 1,
-  "CategoryID": 1,
-  "QuantityPerUnit": "24 - 12 oz bottles",
-  "UnitPrice": 19.0000,
-  "UnitsInStock": 17,
-  "UnitsOnOrder": 40,
-  "ReorderLevel": 25,
-  "Discontinued": false,
-  "Code": 'C2',
-  "Category": {
-      "CategoryID": 1,
-      "CategoryName": "Beverages",
-      "Description": "Soft drinks, coffees, teas, beers, and ales"
-  }
-}, {
-  "ProductID": 3,
-  "ProductName": "Aniseed Syrup",
-  "SupplierID": 1,
-  "CategoryID": 2,
-  "QuantityPerUnit": "12 - 550 ml bottles",
-  "UnitPrice": 10.0000,
-  "UnitsInStock": 13,
-  "UnitsOnOrder": 70,
-  "ReorderLevel": 25,
-  "Discontinued": false,
-  "Code": 'C3',
-  "Category": {
-      "CategoryID": 2,
-      "CategoryName": "Condiments",
-      "Description": "Sweet and savory sauces, relishes, spreads, and seasonings"
-  }
-}, {
-  "ProductID": 4,
-  "ProductName": "Chef Anton's Cajun Seasoning",
-  "SupplierID": 2,
-  "CategoryID": 2,
-  "QuantityPerUnit": "48 - 6 oz jars",
-  "UnitPrice": 22.0000,
-  "UnitsInStock": 53,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 0,
-  "Discontinued": false,
-  "Code": 'C4',
-  "Category": {
-      "CategoryID": 2,
-      "CategoryName": "Condiments",
-      "Description": "Sweet and savory sauces, relishes, spreads, and seasonings"
-  }
-}, {
-  "ProductID": 5,
-  "ProductName": "Chef Anton's Gumbo Mix",
-  "SupplierID": 2,
-  "CategoryID": 2,
-  "QuantityPerUnit": "36 boxes",
-  "UnitPrice": 21.3500,
-  "UnitsInStock": 0,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 0,
-  "Discontinued": true,
-  "Code": 'C5',
-  "Category": {
-      "CategoryID": 2,
-      "CategoryName": "Condiments",
-      "Description": "Sweet and savory sauces, relishes, spreads, and seasonings"
-  }
-}, {
-  "ProductID": 6,
-  "ProductName": "Grandma's Boysenberry Spread",
-  "SupplierID": 3,
-  "CategoryID": 2,
-  "QuantityPerUnit": "12 - 8 oz jars",
-  "UnitPrice": 25.0000,
-  "UnitsInStock": 120,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 25,
-  "Discontinued": false,
-  "Code": 'C6',
-  "Category": {
-      "CategoryID": 2,
-      "CategoryName": "Condiments",
-      "Description": "Sweet and savory sauces, relishes, spreads, and seasonings"
-  }
-}, {
-  "ProductID": 7,
-  "ProductName": "Uncle Bob's Organic Dried Pears",
-  "SupplierID": 3,
-  "CategoryID": 7,
-  "QuantityPerUnit": "12 - 1 lb pkgs.",
-  "UnitPrice": 30.0000,
-  "UnitsInStock": 15,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 10,
-  "Discontinued": false,
-  "Code": 'C7',
-  "Category": {
-      "CategoryID": 7,
-      "CategoryName": "Produce",
-      "Description": "Dried fruit and bean curd"
-  }
-}, {
-  "ProductID": 8,
-  "ProductName": "Northwoods Cranberry Sauce",
-  "SupplierID": 3,
-  "CategoryID": 2,
-  "QuantityPerUnit": "12 - 12 oz jars",
-  "UnitPrice": 40.0000,
-  "UnitsInStock": 6,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 0,
-  "Discontinued": false,
-  "Code": 'C8',
-  "Category": {
-      "CategoryID": 2,
-      "CategoryName": "Condiments",
-      "Description": "Sweet and savory sauces, relishes, spreads, and seasonings"
-  }
-}, {
-  "ProductID": 9,
-  "ProductName": "Mishi Kobe Niku",
-  "SupplierID": 4,
-  "CategoryID": 6,
-  "QuantityPerUnit": "18 - 500 g pkgs.",
-  "UnitPrice": 97.0000,
-  "UnitsInStock": 29,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 0,
-  "Discontinued": true,
-  "Code": 'C9',
-  "Category": {
-      "CategoryID": 6,
-      "CategoryName": "Meat/Poultry",
-      "Description": "Prepared meats"
-  }
-}, {
-  "ProductID": 10,
-  "ProductName": "Ikura",
-  "SupplierID": 4,
-  "CategoryID": 8,
-  "QuantityPerUnit": "12 - 200 ml jars",
-  "UnitPrice": 31.0000,
-  "UnitsInStock": 31,
-  "UnitsOnOrder": 0,
-  "ReorderLevel": 0,
-  "Discontinued": false,
-  "Code": 'C10',
-  "Category": {
-      "CategoryID": 8,
-      "CategoryName": "Seafood",
-      "Description": "Seaweed and fish"
-  }
-}];
+];
 
+const employees: Employee[] = [
+  {
+    ID: 1,
+    FirstName: 'John',
+    LastName: 'Heart',
+    Position: 'CEO',
+    Address: '351 S Hill St.',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 2,
+    FirstName: 'Olivia',
+    LastName: 'Peyton',
+    Position: 'Sales Assistant',
+    Address: '807 W Paseo Del Mar',
+    Region: 'Umma',
+    Sector: 'alabama',
+    Channel: 'internet'
+  },
+  {
+    ID: 3,
+    FirstName: 'Robert',
+    LastName: 'Reagan',
+    Position: 'CMO',
+    Address: '4 Westmoreland Pl.',
+    Region: 'Ingolstadt',
+    Sector: 'west',
+    Channel: 'computer'
+  },
+  {
+    ID: 4,
+    FirstName: 'Greta',
+    LastName: 'Sims',
+    Position: 'HR Manager',
+    Address: '1700 S Grandview Dr.',
+    Region: 'Braunchweig',
+    Sector: 'Westcost',
+    Channel: 'zeitung'
+  },
+  {
+    ID: 5,
+    FirstName: 'Brett',
+    LastName: 'Wade',
+    Position: 'IT Manager',
+    Address: '1120 Old Mill Rd.',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 6,
+    FirstName: 'Sandra',
+    LastName: 'Johnson',
+    Position: 'Controller',
+    Address: '4600 N Virginia Rd.',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 7,
+    FirstName: 'Kevin',
+    LastName: 'Carter',
+    Position: 'Shipping Manager',
+    Address: '424 N Main St.',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 8,
+    FirstName: 'Cynthia',
+    LastName: 'Stanwick',
+    Position: 'HR Assistant',
+    Address: '2211 Bonita Dr.',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 9,
+    FirstName: 'Kent',
+    LastName: 'Samuelson',
+    Position: 'Ombudsman',
+    Address: '12100 Mora Dr',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  },
+  {
+    ID: 10,
+    FirstName: 'Taylor',
+    LastName: 'Riley',
+    Position: 'Network Admin',
+    Address: '7776 Torreyson Dr',
+    Region: 'Bonn',
+    Sector: 'Nordstadt',
+    Channel: 'puma'
+  }
+];
 @Injectable()
 export class Service {
   getVeranstaltungen(): Veranstaltung[] {
     return veranstaltungen;
   }
   getProducts(): Product[] {
-  return products;
+    return products;
+  }
+  getEmployees(): Employee[] {
+    return employees;
+  }
+  geStates(): State[] {
+    return states;
   }
 }

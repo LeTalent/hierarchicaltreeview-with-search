@@ -1,3 +1,4 @@
+<!--Tree-view-->
 <h1 class="title">Veranstaltung</h1>
 <dx-tree-view
   class="treeView"
@@ -15,6 +16,7 @@
 
 <br /><br /><br />
 
+<!--Erste Tabelle-->
 <dx-data-grid
   class="datagrid"
   [dataSource]="products"
@@ -29,9 +31,11 @@
     [showInfo]="true"
   >
   </dxo-pager>
-  <dxi-column dataField="ProductID" caption="Product ID"> </dxi-column>
+  <dxi-column dataField="ProductID" caption="Product ID" alignment="left">
+  </dxi-column>
   <dxi-column dataField="ProductName" caption="Product Name"> </dxi-column>
-  <dxi-column dataField="UnitPrice" caption="Unit Price"> </dxi-column>
+  <dxi-column dataField="UnitPrice" caption="Unit Price" alignment="left">
+  </dxi-column>
   <dxi-column dataField="Code" caption="Code" cellTemplate="codeTemplate">
     <div *dxTemplate="let product of 'codeTemplate'">
       <span [style.color]="colorCode(product.data.Code)">
@@ -39,14 +43,13 @@
       </span>
     </div>
   </dxi-column>
-  <dxi-column
-    dataField="QuantityPerUnit"
-    caption="Quantity / Unit"
-  ></dxi-column>
+  <dxi-column dataField="QuantityPerUnit" caption="Quantity / Unit">
+  </dxi-column>
 </dx-data-grid>
 
 <br /><br /><br />
 
+<!--Zweite Tabelle-->
 <dx-data-grid
   class="datagrid"
   [dataSource]="products"
@@ -61,12 +64,23 @@
     [showInfo]="true"
   >
   </dxo-pager>
-  <dxi-column dataField="ProductID" caption="Product ID"> </dxi-column>
+  <dxi-column dataField="ProductID" caption="Product ID" alignment="left">
+  </dxi-column>
   <dxi-column dataField="ProductName" caption="Product Name"> </dxi-column>
-  <dxi-column dataField="UnitPrice" caption="Unit Price"> </dxi-column>
+  <dxi-column dataField="UnitPrice" caption="Unit Price" alignment="left">
+  </dxi-column>
   <dxi-column dataField="Code" caption="Code"> </dxi-column>
   <dxi-column
     dataField="QuantityPerUnit"
     caption="Quantity / Unit"
   ></dxi-column>
 </dx-data-grid>
+
+<br /><br /><br />
+
+<!--Dritte Tabelle-->
+<rrsoftware-table
+  [dataSource]="employees"
+  [gridColumns]="newColumns"
+></rrsoftware-table>
+

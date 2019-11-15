@@ -1,6 +1,6 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, enableProdMode } from "@angular/core";
-import { TreeviewModule } from "ngx-treeview";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, enableProdMode } from '@angular/core';
+import { TreeviewModule } from 'ngx-treeview';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -10,14 +10,14 @@ import {
   DxSelectBoxModule,
   DxTemplateModule,
   DxListModule,
-  DxDataGridModule,
-} from "devextreme-angular";
-import { AppComponent } from "./app.component";
-import { Veranstaltung, Service } from "./app.service";
-
+  DxDataGridModule
+} from 'devextreme-angular';
+import { AppComponent } from './app.component';
+import { Veranstaltung, Service, Product, State, Employee, Category } from './app.service';
+import { RrsoftwareTableComponent } from './rrsoftware-table/rrsoftware-table.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RrsoftwareTableComponent],
   imports: [
     BrowserModule,
     TreeviewModule,
@@ -27,7 +27,7 @@ import { Veranstaltung, Service } from "./app.service";
     DxListModule,
     DxDataGridModule
   ],
-  providers: [Service, Veranstaltung],
+  providers: [Service, Veranstaltung, Product, State, Employee, Category],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
